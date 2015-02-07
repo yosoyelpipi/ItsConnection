@@ -4,7 +4,7 @@
 		id        = "com.itstester.app"
 		version   = "1.0.3">
 
-	<name>ItsConnection</name>
+	<name>ItsTester</name>
 
 	<description>
 	Test para monitorear la conexión activa con el data center de Its.
