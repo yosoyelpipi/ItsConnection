@@ -67,7 +67,7 @@
         <h1>Tester de conexión DataCenter Itris</h1>
         <p class="lead"></p>
 		
-		<form class="form-inline" id="test" action="testconexion.php" method="post">
+		<form class="form-inline" id="test" action="http://mascotasvqr.com/tester/testconexion.php" method="post">
 		  <div class="form-group">
 			<div class="input-group">
 			  <div class="input-group-addon">Puerto: </div>
