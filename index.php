@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Test de conexión</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/starter-template/starter-template.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="http://getbootstrap.com/assets/js/ie-emulation-modes-warning.js"></script>
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	
+	<!-- Mi javascript phonegap -->
+	<script  src="phonegap.js"></script>
+	<script  src="js/mipropiojava.js"></script>	
+	<style>
+	#conecto{
+		display: none;
+	}
+	</style>
+  </head>
+
+  <body onload="onBodyLoad()">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">ItsTestConnection</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-sort" aria-hidden="true"></span> ItsTestConection</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Tester de conexión DataCenter Itris</h1>
+        <p class="lead"></p>
+		
+		<form class="form-inline" id="test" action="testconexion.php" method="post">
+		  <div class="form-group">
+			<div class="input-group">
+			  <div class="input-group-addon">Puerto: </div>
+			  <input type="number" class="form-control" id="puerto" maxlength="5" pattern=".{5,}" name="puerto" placeholder="ingrese puerto">
+			  <div class="input-group-addon"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></div>
+			 
+			</div>
+		  </div>
+		  <button type="submit" class="btn btn-info btn-sm">Probar conexión</button>
+		   <p class="help-block">Puede probar la conexión sin ingresar puerto.</p>
+		  <div id="resultado"></div>
+		</form>
+					<div id="conecto" align="center">
+						<img src="img/velocimetro.gif">
+					</div>
+<div id="muestroresultado"></div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+	<!--DATOS PERSONALES Envia datos a otra página y devuelve resultado-->
+	<script src="js/jquery-1.10.2.js"></script>	
+	<!--<script language="javascript" src="js/jquery-1.3.min.js"></script>-->
+
+	<!-- CONTACTO -->	
+		<script language="javascript">
+		  $(document).ready(function() {
+		   $().ajaxStart(function() {
+		   $('#conecto').show();
+	       $('#muestroresultado').hide();
+
+			}).ajaxStop(function() {
+			$('#conecto').hide();
+			$('#muestroresultado').fadeIn('slow');
+			});
+		  $('#form, #fat, #test').submit(function() {
+			   $('#muestroresultado').hide();
+			   $('#conecto').show();
+			$.ajax({
+				type: 'post',
+				url: $(this).attr('action'),
+				data: $(this).serialize(),
+				success: function(data) {
+				$('#conecto').hide();
+				$('#muestroresultado').fadeIn('slow');
+				$('#muestroresultado').html(data);
+				}
+			})  
+			return false;
+			 }); 
+			})  
+		</script>	
+	
+  </body>
+</html>
